@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henock Kalambay - Développeur Web & Desktop | Portfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hk-dark': '#010409',
+                        'hk-card': '#0d1117',
+                        'hk-blue': '#1a73e8', // Bleu principal
+                        'hk-cyan': '#00dfff', // Bleu clair / cyan d'accent
+                        'hk-text-main': '#e6edf3',
+                        'hk-text-muted': '#8b949e',
+                        'hk-border': '#30363d',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Styles personnalisés pour scrollbar et effets de carte */
+        body {
+            background-color: #010409;
+            color: #e6edf3;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d1117;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a73e8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00dfff;
+        }
+
+        .hk-card {
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 0.75rem; /* rounded-xl */
+            transition: all 0.3s ease;
+        }
+        .hk-card:hover {
+            border-color: #00dfff;
+            box-shadow: 0 4px 20px rgba(0, 223, 255, 0.1);
+        }
+
+        /* Animation pour l'apparition des éléments */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Style pour les barres de progression */
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #30363d;
+            overflow: hidden;
+            position: relative;
+        }
+        .skill-level {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #1a73e8, #00dfff);
+            width: 0%; /* Initialement à 0% */
+            transition: width 1s ease-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-hk-dark/80 backdrop-blur-sm border-b border-hk-border">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            
+            <a href="#hero" class="flex items-center gap-2 text-xl font-bold">
+                <span class="text-hk-blue">HK</span>
+                <span class="text-hk-text-main">Henock Kalambay</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-6">
+                <a href="#about" class="text-hk-text-main hover:text-hk-cyan transition">À propos</a>
+                <a href="#skills" class="text-hk-text-main hover:text-hk-cyan transition">Compétences</a>
+                <a href="#projects" class="text-hk-text-main hover:text-hk-cyan transition">Projets</a>
+                <a href="#services" class="text-hk-text-main hover:text-hk-cyan transition">Services</a>
+                <a href="#testimonials" class="text-hk-text-main hover:text-hk-cyan transition">Témoignages</a>
+                <a href="#contact" class="text-hk-text-main hover:text-hk-cyan transition">Contact</a>
+            </nav>
+
+            <a href="#contact" class="hidden md:flex items-center gap-2 px-6 py-2 bg-hk-blue text-white rounded-full font-medium hover:bg-hk-blue/90 transition shadow-lg shadow-hk-blue/20">
+                Me contacter <i class="fas fa-paper-plane text-xs"></i>
+            </a>
+
+            <button id="menu-toggle" class="md:hidden text-hk-text-main focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-hk-dark border-t border-hk-border p-6 shadow-xl">
+            <nav class="flex flex-col gap-5 text-center">
+                <a href="#about" class="text-lg text-hk-text-main hover:text-hk-cyan transition py-2 mobile-link">À propos</a>
+                <a href="#skills" class="text-lg text-hk-text-main hover:text-hk-cyan transition py-2 mobile-link">Compétences</a>
+                <a href="#projects" class="text-lg text-hk-text-main hover:text-hk-cyan transition py-2 mobile-link">Projets</a>
+                <a href="#services" class="text-lg text-hk-text-main hover:text-hk-cyan transition py-2 mobile-link">Services</a>
+                <a href="#testimonials" class="text-lg text-hk-text-main hover:text-hk-cyan transition py-2 mobile-link">Témoignages</a>
+                <a href="#contact" class="text-lg text-hk-text-main hover:text-hk-cyan transition py-2 mobile-link">Contact</a>
+                <a href="#contact" class="mt-4 flex items-center justify-center gap-2 px-6 py-3 bg-hk-blue text-white rounded-full font-medium hover:bg-hk-blue/90 transition mobile-link">
+                    Me contacter <i class="fas fa-paper-plane text-xs"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+
+    <section id="hero" class="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden">
+        
+        <div class="absolute inset-0 bg-hk-dark opacity-80" style="background-image: url('images/stars.svg'); background-size: cover;"></div>
+        <i class="fas fa-microchip absolute text-[20rem] text-hk-blue opacity-5 -right-20 -top-20"></i>
+        
+        <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-[1fr,450px] items-center gap-12">
+            
+            <div class="reveal">
+                <p class="inline-block px-4 py-1.5 rounded-full bg-hk-blue/10 border border-hk-blue/20 text-hk-cyan text-sm mb-6 flex items-center gap-2 w-fit">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-hk-cyan opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-hk-cyan"></span>
+                    </span>
+                    Développeur passionné
+                </p>
+                
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-hk-text-main leading-tight">
+                    <span class="text-hk-text-main">Henock</span> <br>
+                    <span class="text-hk-blue">Kalambay</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl font-semibold mb-8 text-hk-text-main/90">
+                    Développeur Web & Desktop | <span class="text-hk-cyan">Créateur de solutions digitales</span>
+                </p>
+                
+                <p class="text-hk-text-muted text-lg mb-12 max-w-2xl leading-relaxed">
+                    Je conçois des applications modernes et des solutions intelligentes mêlant programmation, électronique et innovation pour simplifier la vie et avoir un impact réel, notamment en Afrique.
+                </p>
+                
+                <div class="flex items-center gap-6 flex-wrap">
+                    <a href="#projects" class="flex items-center gap-2.5 px-8 py-3 bg-hk-blue text-white rounded-full font-semibold text-lg hover:bg-hk-blue/90 transition transform hover:-translate-y-1 shadow-lg shadow-hk-blue/20">
+                        Voir mes projets <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                    <a href="#contact" class="flex items-center gap-2.5 px-8 py-3 bg-hk-card border border-hk-border text-hk-text-main rounded-full font-semibold text-lg hover:border-hk-cyan hover:text-hk-cyan transition transform hover:-translate-y-1">
+                        Me contacter <i class="far fa-comments text-base"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="reveal relative flex items-center justify-center pt-10 md:pt-0">
+                <div class="absolute -inset-10 bg-hk-cyan opacity-20 rounded-full blur-[100px]"></div>
+                
+                <div class="relative w-full aspect-[4/3] flex items-end justify-center">
+                    <div class="absolute top-0 right-0 w-[90%] aspect-[16/10] bg-hk-card rounded-xl border border-hk-border p-2 shadow-2xl">
+                        <img src="COMPT.png" alt="Mockup Ordinateur" class="w-full h-full object-cover rounded-lg">
+                        <div class="absolute inset-0 bg-hk-cyan opacity-5 rounded-lg flex items-center justify-center text-4xl text-hk-cyan">
+                            <i class="fas fa-code"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-0 left-0 w-[55%] aspect-square bg-hk-card rounded-xl border border-hk-border p-4 shadow-2xl flex flex-col items-center justify-center transform translate-y-6 -translate-x-6">
+                        <img src="ARROSE.jpg" alt="Carte Arduino" class="w-full h-full object-contain mb-2">
+                        <p class="text-xs text-hk-text-muted text-center">Systèmes intelligents</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="about" class="py-24 bg-hk-card border-y border-hk-border">
+        <div class="container mx-auto px-6 reveal">
+            
+            <div class="max-w-xl mx-auto text-center mb-16">
+                <p class="text-hk-cyan font-medium mb-3">À PROPOS DE MOI</p>
+                <h2 class="text-4xl font-bold text-hk-text-main">Qui suis-je ?</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-[300px,1fr] gap-12 items-center">
+                
+                <div class="flex flex-col items-center gap-6 hk-card p-8">
+                    <div class="relative w-48 h-48 rounded-full overflow-hidden border-4 border-hk-blue shadow-lg shadow-hk-blue/20">
+                        <img src="Profil.jpg" alt="Henock Kalambay" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-hk-cyan opacity-10 flex items-center justify-center text-5xl text-hk-cyan">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-xl font-bold text-hk-text-main">Henock Kalambay</p>
+                        <p class="text-hk-text-muted">Développeur & Créateur</p>
+                    </div>
+                    <div class="flex items-center gap-5 text-2xl text-hk-text-muted">
+                        <a href="https://www.linkedin.com/in/henock-kalambay-b57392391" target="_blank" class="hover:text-hk-cyan transition"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/henock2104" target="_blank" class="hover:text-hk-cyan transition"><i class="fab fa-github"></i></a>
+                        <a href="mailto:henockkalambay869@gmail.com" class="hover:text-hk-cyan transition"><i class="far fa-envelope"></i></a>
+                        <a href="https://wa.me/243837414811" target="_blank" class="hover:text-hk-cyan transition"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="hk-card p-10 leading-relaxed text-lg">
+                    <p class="text-hk-text-main mb-6">
+                        Je suis Henock Kalambay, étudiant passionné en informatique génie logiciel, spécialisé dans la création d'applications desktop et web ainsi que dans la programmation de systèmes embarqués.
+                    </p>
+                    <p class="text-hk-text-muted mb-10">
+                        Mon approche mêle la rigueur du développement logiciel à l'innovation de l'électronique. J'aime relever des défis techniques pour créer des outils concrets et accessibles, pensés pour le quotidien et les besoins spécifiques de notre environnement, notamment en Afrique.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 pt-8 border-t border-hk-border">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl text-hk-blue mt-1"><i class="fas fa-laptop-code"></i></div>
+                            <div>
+                                <p class="font-semibold text-hk-text-main mb-1">Développement & Innovation</p>
+                                <p class="text-sm text-hk-text-muted">Création d'applications desktop puissantes et de plateformes web interactives.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl text-hk-blue mt-1"><i class="fas fa-microchip"></i></div>
+                            <div>
+                                <p class="font-semibold text-hk-text-main mb-1">Électronique & Arduino</p>
+                                <p class="text-sm text-hk-text-muted">Systèmes embarqués connectés, automatisation et IoT pour des solutions intelligentes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 flex items-center gap-3 p-4 bg-hk-blue/10 border border-hk-blue/30 rounded-xl">
+                        <i class="fas fa-map-marked-alt text-2xl text-hk-cyan"></i>
+                        <p class="font-medium text-hk-cyan">Ma Vision : Créer des solutions utiles, robustes et adaptées pour un impact durable en Afrique.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="skills" class="py-24 bg-hk-dark">
+        <div class="container mx-auto px-6 reveal">
+            
+            <div class="max-w-xl mx-auto text-center mb-16">
+                <p class="text-hk-cyan font-medium mb-3">MES CAPACITÉS</p>
+                <h2 class="text-4xl font-bold text-hk-text-main">Compétences Techniques</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="hk-card p-8">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="text-4xl text-hk-blue"><i class="fas fa-code"></i></div>
+                        <h3 class="text-xl font-bold text-hk-text-main">Développement Web</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">HTML / CSS</span> <span class="text-hk-text-muted">90%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="90%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">JavaScript</span> <span class="text-hk-text-muted">85%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Tailwind CSS</span> <span class="text-hk-text-muted">80%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Responsive Design</span> <span class="text-hk-text-muted">85%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
+                        </div>
+                        <div class="pt-4 flex gap-4 text-3xl text-hk-text-muted opacity-50">
+                            <i class="fab fa-html5"></i> <i class="fab fa-css3-alt"></i> <i class="fab fa-js-square"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hk-card p-8">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="text-4xl text-hk-blue"><i class="fas fa-desktop"></i></div>
+                        <h3 class="text-xl font-bold text-hk-text-main">Développement Logiciel</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">VB.NET / C#</span> <span class="text-hk-text-muted">85%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Applications Desktop</span> <span class="text-hk-text-muted">80%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Gestion de Bases de Données</span> <span class="text-hk-text-muted">75%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
+                        </div>
+                        <div class="pt-10 flex gap-4 text-3xl text-hk-text-muted opacity-50">
+                            <i class="fas fa-code-branch"></i> <i class="fas fa-database"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hk-card p-8 lg:col-span-2 lg:md:grid-cols-2">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="text-4xl text-hk-blue"><i class="fas fa-microchip"></i></div>
+                        <h3 class="text-xl font-bold text-hk-text-main">Électronique & Arduino</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-x-8 gap-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">C / C++ (Arduino IDE)</span> <span class="text-hk-text-muted">80%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Systèmes Embarqués</span> <span class="text-hk-text-muted">75%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
+                        </div>
+                       
+                       
+                       
+                       <h3 class="text-xl font-bold text-hk-text-main">Électronique & Arduino</h3>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-x-8 gap-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">C / C++ (Arduino IDE)</span> <span class="text-hk-text-muted">80%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Systèmes Embarqués</span> <span class="text-hk-text-muted">75%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Capteurs & Modules</span> <span class="text-hk-text-muted">85%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Automatisation</span> <span class="text-hk-text-muted">75%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
+                        </div>
+                    </div>
+                    <div class="pt-8 flex gap-4 text-3xl text-hk-text-muted opacity-50">
+                        <i class="fas fa-bolt"></i> <i class="fas fa-network-wired"></i>
+                    </div>
+                </div>
+
+                <div class="hk-card p-8">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="text-4xl text-hk-blue"><i class="fas fa-user-graduate"></i></div>
+                        <h3 class="text-xl font-bold text-hk-text-main">Autres Compétences</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">UI/UX Design</span> <span class="text-hk-text-muted">70%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="70%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Algorithmique</span> <span class="text-hk-text-muted">75%</span></div>
+                            <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="projects" class="py-24 bg-hk-card border-y border-hk-border">
+        <div class="container mx-auto px-6 reveal">
+            
+            <div class="max-w-xl mx-auto text-center mb-16">
+                <p class="text-hk-cyan font-medium mb-3">MES RÉALISATIONS</p>
+                <h2 class="text-4xl font-bold text-hk-text-main">Projets Clés</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <article class="hk-card group overflow-hidden flex flex-col">
+                    <div class="relative w-full aspect-video overflow-hidden">
+                        <img src="Capture d'écran 2026-05-02 085859.png" alt="EduSchool" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-hk-cyan opacity-10 flex items-center justify-center text-4xl text-hk-cyan">
+                            <i class="fas fa-university"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <h3 class="text-2xl font-bold text-hk-text-main mb-3">EduSchool</h3>
+                        <p class="text-hk-cyan font-medium mb-4">Application de gestion scolaire (Web)</p>
+                        <p class="text-hk-text-muted leading-relaxed mb-6 flex-grow">
+                            Plateforme web performante permettant la gestion complète d'une école (élèves, enseignants, notes, finances) avec dashboard interactif.
+                        </p>
+                        <div class="flex flex-wrap gap-2.5 mb-8">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-hk-border text-hk-text-main border border-hk-border">PHP</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-hk-border text-hk-text-main border border-hk-border">HTML/CSS</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-hk-border text-hk-text-main border border-hk-border">Tailwind</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-hk-border text-hk-text-main border border-hk-border">JavaScript</span>
+                        </div>
+                        <a href="#" target="_blank" class="flex items-center gap-2 text-hk-blue font-semibold group-hover:text-hk-cyan transition">
+                            Voir le projet <i class="fas fa-external-link-alt text-sm transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="hk-card group overflow-hidden flex flex-col">
+                    <div class="relative w-full aspect-video overflow-hidden">
+                        <img src="gesttache.png" alt="Gestionnaire de tache" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-hk-cyan opacity-10 flex items-center justify-center text-4xl text-hk-cyan">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <h3 class="text-2xl font-bold text-hk-text-main mb-3">Gestion de taches</h3>
+                        <p class="text-hk-cyan font-medium mb-4">Application Desktop (VB.NET / C#)</p>
+                        <p class="text-hk-text-muted leading-relaxed mb-6 flex-grow">
+                            Logiciel desktop complet pour la gestion de taches avec notification de rappel.
+                        </p>
+                        <div class="flex flex-wrap gap-2.5 mb-8">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-hk-border text-hk-text-main border border-hk-border">VB.NET</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-hk-border text-hk-text-main border border-hk-border">C#</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-hk-border text-hk-text-main border border-hk-border">Gestion Données</span>
+                        </div>
+                        <a href="#" target="_blank" class="flex items-center gap-2 text-hk-blue font-semibold group-hover:text-hk-cyan transition">
+                            Voir le projet <i class="fas fa-external-link-alt text-sm transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="hk-card group overflow-hidden flex flex-col lg:col-span-1 lg:md:grid-cols-1">
+                    <div class="relative w-full aspect-video overflow-hidden">
+                        <img src="ARROSE.jpg" alt="Arduino Santé" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-hk-cyan opacity-10 flex items-center justify-center text-4xl text-hk-cyan">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <h3 class="text-2xl font-bold text-hk-text-main mb-3">Projets Arduino / Agriculture</h3>
+                        <p class="text-hk-cyan font-medium mb-4">Systèmes Électroniques d'agriculture</p>
+                        <p class="text-hk-text-muted leading-relaxed mb-6 flex-grow">
+                            Conception de solutions IoT pour l'agriculture : mesure des paramètres du sol, automatisation, alertes, etc.
+                        </p>
+                        <div class="flex flex-wrap gap-2.5 mb-8">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-hk-border text-hk-text-main border border-hk-border">C/C++</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-hk-border text-hk-text-main border border-hk-border">Capteurs</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-hk-border text-hk-text-main border border-hk-border">Automatisation</span>
+                        </div>
+                        <a href="#" target="_blank" class="flex items-center gap-2 text-hk-blue font-semibold group-hover:text-hk-cyan transition">
+                            Voir le projet <i class="fas fa-external-link-alt text-sm transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="services" class="py-24 bg-hk-dark">
+        <div class="container mx-auto px-6 reveal">
+            
+            <div class="max-w-xl mx-auto text-center mb-16">
+                <p class="text-hk-cyan font-medium mb-3">CE QUE JE PEUX OFFRIR</p>
+                <h2 class="text-4xl font-bold text-hk-text-main">Mes Services</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="hk-card p-8 group text-center flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-hk-blue/10 border border-hk-blue/30 text-5xl text-hk-cyan flex items-center justify-center mb-8 transform group-hover:-translate-y-2 transition-transform shadow-lg shadow-hk-cyan/10">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-hk-text-main mb-4 flex-grow">Création de Sites Web</h3>
+                    <p class="text-hk-text-muted leading-relaxed text-sm">Design moderne, responsive, adapté à vos besoins et performant.</p>
+                </div>
+
+                <div class="hk-card p-8 group text-center flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-hk-blue/10 border border-hk-blue/30 text-5xl text-hk-cyan flex items-center justify-center mb-8 transform group-hover:-translate-y-2 transition-transform shadow-lg shadow-hk-cyan/10">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-hk-text-main mb-4 flex-grow">Développement d'Applications</h3>
+                    <p class="text-hk-text-muted leading-relaxed text-sm">Conception d'applications desktop puissantes et robustes.</p>
+                </div>
+
+                <div class="hk-card p-8 group text-center flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-hk-blue/10 border border-hk-blue/30 text-5xl text-hk-cyan flex items-center justify-center mb-8 transform group-hover:-translate-y-2 transition-transform shadow-lg shadow-hk-cyan/10">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-hk-text-main mb-4 flex-grow">Conception Systèmes Arduino</h3>
+                    <p class="text-hk-text-muted leading-relaxed text-sm">Solutions IoT, automatisation et capteurs intelligents.</p>
+                </div>
+
+                <div class="hk-card p-8 group text-center flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-hk-blue/10 border border-hk-blue/30 text-5xl text-hk-cyan flex items-center justify-center mb-8 transform group-hover:-translate-y-2 transition-transform shadow-lg shadow-hk-cyan/10">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-hk-text-main mb-4 flex-grow">Maintenance Informatique</h3>
+                    <p class="text-hk-text-muted leading-relaxed text-sm">Gestion et optimisation de vos systèmes d'information.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="testimonials" class="py-24 bg-hk-card border-y border-hk-border">
+        <div class="container mx-auto px-6 reveal">
+            
+            <div class="max-w-xl mx-auto text-center mb-16">
+                <p class="text-hk-cyan font-medium mb-3">RETROUVEZ LES AVIS</p>
+                <h2 class="text-4xl font-bold text-hk-text-main">Témoignages</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <article class="hk-card p-8 flex flex-col">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-full bg-hk-border flex items-center justify-center text-4xl text-hk-text-muted">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div>
+                            <p class="text-lg font-bold text-hk-text-main">M. Emmanuel Kasongo</p>
+                            <p class="text-sm text-hk-text-muted">Directeur d'école</p>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <i class="fas fa-quote-left text-3xl text-hk-blue/50 mb-4 block"></i>
+                        <p class="text-hk-text-muted leading-relaxed mb-6">
+                            L'application EduSchool a transformé la gestion de notre établissement. Simple, intuitive et complète, elle nous fait gagner un temps précieux au quotidien.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-hk-border flex items-center gap-1.5 text-hk-cyan">
+                        <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                    </div>
+                </article>
+
+                <article class="hk-card p-8 flex flex-col">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-full bg-hk-border flex items-center justify-center text-4xl text-hk-text-muted">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div>
+                            <p class="text-lg font-bold text-hk-text-main">Dr. Peter Kemo</p>
+                            <p class="text-sm text-hk-text-muted">Spécialiste IoT Santé</p>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <i class="fas fa-quote-left text-3xl text-hk-blue/50 mb-4 block"></i>
+                        <p class="text-hk-text-muted leading-relaxed mb-6">
+                            Henock a une excellente compréhension des systèmes embarqués. Son projet de santé basé sur Arduino est très prometteur. Un grand potentiel !
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-hk-border flex items-center gap-1.5 text-hk-cyan">
+                        <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </article>
+
+                <article class="hk-card p-8 flex flex-col lg:col-span-1 lg:md:grid-cols-1">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-full bg-hk-border flex items-center justify-center text-4xl text-hk-text-muted">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div>
+                            <p class="text-lg font-bold text-hk-text-main">C.Caleb Bondo</p>
+                            <p class="text-sm text-hk-text-muted">Ingénieur Cloud</p>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <i class="fas fa-quote-left text-3xl text-hk-blue/50 mb-4 block"></i>
+                        <p class="text-hk-text-muted leading-relaxed mb-6">
+                            Un profil très complet, à la fois software et hardware, ce qui est rare et précieux. Curieux, rigoureux et autonome dans ses projets.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-hk-border flex items-center gap-1.5 text-hk-cyan">
+                        <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="py-24 bg-hk-dark">
+        <div class="container mx-auto px-6 reveal">
+            
+            <div class="max-w-xl mx-auto text-center mb-16">
+                <p class="text-hk-cyan font-medium mb-3">DISCUTONS DE VOTRE PROJET</p>
+                <h2 class="text-4xl font-bold text-hk-text-main">Me Contacter</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-[1fr,minmax(400px,max-content)] gap-16 items-start">
+                
+                <form action="https://formspree.io/f/mljdrwno" method="POST" class="hk-card p-10 space-y-8">
+    <div class="grid md:grid-cols-2 gap-8">
+        <div>
+            <label for="name" class="block text-hk-text-main font-medium mb-2.5">Nom complet</label>
+            <input type="text" id="name" name="name" class="w-full px-5 py-3 rounded-lg bg-hk-border border border-hk-border text-hk-text-main focus:border-hk-blue focus:ring-1 focus:ring-hk-blue focus:outline-none" placeholder="Votre nom" required>
+        </div>
+        <div>
+            <label for="email" class="block text-hk-text-main font-medium mb-2.5">Email</label>
+            <input type="email" id="email" name="_replyto" class="w-full px-5 py-3 rounded-lg bg-hk-border border border-hk-border text-hk-text-main focus:border-hk-blue focus:ring-1 focus:ring-hk-blue focus:outline-none" placeholder="Votre email" required>
+        </div>
+    </div>
+    <div>
+        <label for="message" class="block text-hk-text-main font-medium mb-2.5">Message</label>
+        <textarea id="message" name="message" rows="6" class="w-full px-5 py-3 rounded-lg bg-hk-border border border-hk-border text-hk-text-main focus:border-hk-blue focus:ring-1 focus:ring-hk-blue focus:outline-none resize-none" placeholder="Votre message..." required></textarea>
+    </div>
+    <button type="submit" class="w-full flex items-center justify-center gap-2.5 px-8 py-3.5 bg-hk-blue text-white rounded-lg font-semibold text-lg hover:bg-hk-blue/90 transition shadow-lg shadow-hk-blue/20">
+        Envoyer le message <i class="fas fa-paper-plane text-sm"></i>
+    </button>
+</form>
+                
+                <aside class="hk-card p-10 space-y-10 flex flex-col justify-center">
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 h-14 rounded-full bg-hk-blue/10 border border-hk-blue/30 text-3xl text-hk-cyan flex items-center justify-center">
+                            <i class="far fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-hk-text-muted">Email</p>
+                            <p class="text-lg font-medium text-hk-text-main">henockkalambay869@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 rounded-full bg-hk-blue/10 border border-hk-blue/30 text-3xl text-hk-cyan flex items-center justify-center">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-hk-text-muted">WhatsApp</p>
+                            <p class="text-lg font-medium text-hk-text-main">+243 837 414 811</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-5 pt-8 border-t border-hk-border flex-col text-center">
+                         <div class="flex items-center gap-5 text-3xl text-hk-text-muted">
+                            <a href="https://www.linkedin.com/in/henock-kalambay-b57392391" target="_blank" class="hover:text-hk-cyan transition"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/Henock2104" target="_blank" class="hover:text-hk-cyan transition"><i class="fab fa-github"></i></a>
+                        </div>
+                        <p class="text-sm text-hk-text-muted mt-4">Kinshasa, République Démocratique du Congo</p>
+                    </div>
+                </aside>
+                
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="py-12 bg-hk-dark border-t border-hk-border">
+        <div class="container mx-auto px-6 text-center reveal">
+            
+            <a href="#hero" class="flex items-center justify-center gap-2 text-2xl font-bold mb-8">
+                <span class="text-hk-blue">HK</span>
+                <span class="text-hk-text-main">Henock Kalambay</span>
+            </a>
+            
+            <div class="flex items-center justify-center gap-8 mb-10 text-hk-text-muted">
+                <a href="#about" class="hover:text-hk-cyan transition">À propos</a>
+                <a href="#skills" class="hover:text-hk-cyan transition">Compétences</a>
+                <a href="#projects" class="hover:text-hk-cyan transition">Projets</a>
+                <a href="#contact" class="hover:text-hk-cyan transition">Contact</a>
+            </div>
+            
+            <p class="text-hk-text-muted opacity-80 text-sm mb-6">
+                © <script>document.write(new Date().getFullYear())</script> Henock Kalambay. Tous droits réservés.
+            </p>
+            
+            <p class="text-hk-text-muted opacity-80 text-xs">
+                Fait avec ❤️ et beaucoup de café ☕️
+            </p>
+        </div>
+    </footer>
+
+
+    <script>
+        // --- GESTION DU MENU BURGER MOBILE ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const barIcon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            barIcon.classList.toggle('fa-bars');
+            barIcon.classList.toggle('fa-times'); // Remplace l'icône burger par une croix
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden'); // Ferme le menu après clic sur un lien
+                barIcon.classList.remove('fa-times');
+                barIcon.classList.add('fa-bars');
+            });
+        });
+
+        // --- ANIMATIONS D'APPARITION AU SCROLL (SCROLL REVEAL) ---
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            const skillBars = document.querySelectorAll(".skill-level");
+
+            reveals.forEach((element) => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150; // Distance du bord de l'écran avant déclenchement
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add("active");
+                } else {
+                    element.classList.remove("active");
+                }
+            });
+
+            // Animation spécifique pour les barres de progression
+            skillBars.forEach((bar) => {
+                const windowHeight = window.innerHeight;
+                const elementTop = bar.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    bar.style.width = bar.dataset.level; // Applique le pourcentage défini
+                } else {
+                    bar.style.width = "0%"; // Réinitialise si hors champ
+                }
+            });
+        }
+
+        // Écouteur d'événement pour le défilement
+        window.addEventListener("scroll", reveal);
+
+        // Applique l'animation dès le chargement pour les éléments visibles
+        reveal();
+    </script>
+
+</body>
+</html>
