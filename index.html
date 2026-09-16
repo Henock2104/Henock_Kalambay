@@ -20,8 +20,8 @@
                     colors: {
                         'hk-dark': '#010409',
                         'hk-card': '#0d1117',
-                        'hk-blue': '#1a73e8', // Bleu principal
-                        'hk-cyan': '#00dfff', // Bleu clair / cyan d'accent
+                        'hk-blue': '#1a73e8',
+                        'hk-cyan': '#00dfff',
                         'hk-text-main': '#e6edf3',
                         'hk-text-muted': '#8b949e',
                         'hk-border': '#30363d',
@@ -34,10 +34,10 @@
         }
     </script>
     <style>
-        /* Styles personnalisés pour scrollbar et effets de carte */
         body {
             background-color: #010409;
             color: #e6edf3;
+            overflow-x: hidden;
         }
 
         ::-webkit-scrollbar {
@@ -58,7 +58,7 @@
         .hk-card {
             background-color: #0d1117;
             border: 1px solid #30363d;
-            border-radius: 0.75rem; /* rounded-xl */
+            border-radius: 0.75rem;
             transition: all 0.3s ease;
         }
         .hk-card:hover {
@@ -66,7 +66,6 @@
             box-shadow: 0 4px 20px rgba(0, 223, 255, 0.1);
         }
 
-        /* Animation pour l'apparition des éléments */
         .reveal {
             position: relative;
             opacity: 0;
@@ -78,7 +77,6 @@
             transform: translateY(0);
         }
 
-        /* Style pour les barres de progression */
         .skill-bar {
             height: 8px;
             border-radius: 4px;
@@ -90,7 +88,7 @@
             height: 100%;
             border-radius: 4px;
             background: linear-gradient(90deg, #1a73e8, #00dfff);
-            width: 0%; /* Initialement à 0% */
+            width: 0%;
             transition: width 1s ease-out;
         }
     </style>
@@ -138,15 +136,14 @@
         </div>
     </header>
 
-
-    <section id="hero" class="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden">
+    <section id="hero" class="min-h-screen flex items-center pt-28 pb-16 relative overflow-hidden">
         
         <div class="absolute inset-0 bg-hk-dark opacity-80" style="background-image: url('images/stars.svg'); background-size: cover;"></div>
-        <i class="fas fa-microchip absolute text-[20rem] text-hk-blue opacity-5 -right-20 -top-20"></i>
+        <i class="fas fa-microchip absolute text-[12rem] md:text-[20rem] text-hk-blue opacity-5 -right-10 -top-10 md:-right-20 md:-top-20 pointer-events-none"></i>
         
-        <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-[1fr,450px] items-center gap-12">
+        <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-12 items-center gap-12">
             
-            <div class="reveal">
+            <div class="reveal md:col-span-7">
                 <p class="inline-block px-4 py-1.5 rounded-full bg-hk-blue/10 border border-hk-blue/20 text-hk-cyan text-sm mb-6 flex items-center gap-2 w-fit">
                     <span class="relative flex h-3 w-3">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-hk-cyan opacity-75"></span>
@@ -155,70 +152,66 @@
                     Développeur passionné
                 </p>
                 
-                <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-hk-text-main leading-tight">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 text-hk-text-main leading-tight">
                     <span class="text-hk-text-main">Henock</span> <br>
                     <span class="text-hk-blue">Kalambay</span>
                 </h1>
                 
-                <p class="text-xl md:text-2xl font-semibold mb-8 text-hk-text-main/90">
+                <p class="text-lg sm:text-xl md:text-2xl font-semibold mb-8 text-hk-text-main/90">
                     Développeur Web & Desktop | <span class="text-hk-cyan">Créateur de solutions digitales</span>
                 </p>
                 
-                <p class="text-hk-text-muted text-lg mb-12 max-w-2xl leading-relaxed">
+                <p class="text-hk-text-muted text-base sm:text-lg mb-12 max-w-2xl leading-relaxed">
                     Je conçois des applications modernes et des solutions intelligentes mêlant programmation, électronique et innovation pour simplifier la vie et avoir un impact réel, notamment en Afrique.
                 </p>
                 
-                <div class="flex items-center gap-6 flex-wrap">
-                    <a href="#projects" class="flex items-center gap-2.5 px-8 py-3 bg-hk-blue text-white rounded-full font-semibold text-lg hover:bg-hk-blue/90 transition transform hover:-translate-y-1 shadow-lg shadow-hk-blue/20">
+                <div class="flex items-center gap-4 sm:gap-6 flex-wrap">
+                    <a href="#projects" class="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-3 bg-hk-blue text-white rounded-full font-semibold text-base sm:text-lg hover:bg-hk-blue/90 transition transform hover:-translate-y-1 shadow-lg shadow-hk-blue/20">
                         Voir mes projets <i class="fas fa-arrow-right text-sm"></i>
                     </a>
-                    <a href="#contact" class="flex items-center gap-2.5 px-8 py-3 bg-hk-card border border-hk-border text-hk-text-main rounded-full font-semibold text-lg hover:border-hk-cyan hover:text-hk-cyan transition transform hover:-translate-y-1">
+                    <a href="#contact" class="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-3 bg-hk-card border border-hk-border text-hk-text-main rounded-full font-semibold text-base sm:text-lg hover:border-hk-cyan hover:text-hk-cyan transition transform hover:-translate-y-1">
                         Me contacter <i class="far fa-comments text-base"></i>
                     </a>
                 </div>
             </div>
 
-            <div class="reveal relative flex items-center justify-center pt-10 md:pt-0">
+            <div class="reveal md:col-span-5 relative flex items-center justify-center pt-6 md:pt-0">
                 <div class="absolute -inset-10 bg-hk-cyan opacity-20 rounded-full blur-[100px]"></div>
                 
-                <div class="relative w-full aspect-[4/3] flex items-end justify-center">
-                    <div class="absolute top-0 right-0 w-[90%] aspect-[16/10] bg-hk-card rounded-xl border border-hk-border p-2 shadow-2xl">
+                <div class="relative w-full max-w-[400px] md:max-w-none aspect-[4/3] flex items-end justify-center">
+                    <div class="absolute top-0 right-0 w-[85%] sm:w-[90%] aspect-[16/10] bg-hk-card rounded-xl border border-hk-border p-2 shadow-2xl">
                         <img src="COMPT.png" alt="Mockup Ordinateur" class="w-full h-full object-cover rounded-lg">
                         <div class="absolute inset-0 bg-hk-cyan opacity-5 rounded-lg flex items-center justify-center text-4xl text-hk-cyan">
                             <i class="fas fa-code"></i>
                         </div>
                     </div>
                     
-                    <div class="absolute bottom-0 left-0 w-[55%] aspect-square bg-hk-card rounded-xl border border-hk-border p-4 shadow-2xl flex flex-col items-center justify-center transform translate-y-6 -translate-x-6">
+                    <div class="absolute bottom-0 left-0 w-[50%] sm:w-[55%] aspect-square bg-hk-card rounded-xl border border-hk-border p-3 sm:p-4 shadow-2xl flex flex-col items-center justify-center transform translate-y-4 -translate-x-2 sm:-translate-x-6">
                         <img src="ARROSE.jpg" alt="Carte Arduino" class="w-full h-full object-contain mb-2">
-                        <p class="text-xs text-hk-text-muted text-center">Systèmes intelligents</p>
+                        <p class="text-[10px] sm:text-xs text-hk-text-muted text-center">Systèmes intelligents</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <section id="about" class="py-24 bg-hk-card border-y border-hk-border">
+    <section id="about" class="py-16 sm:py-24 bg-hk-card border-y border-hk-border">
         <div class="container mx-auto px-6 reveal">
             
-            <div class="max-w-xl mx-auto text-center mb-16">
+            <div class="max-w-xl mx-auto text-center mb-12 sm:mb-16">
                 <p class="text-hk-cyan font-medium mb-3">À PROPOS DE MOI</p>
-                <h2 class="text-4xl font-bold text-hk-text-main">Qui suis-je ?</h2>
+                <h2 class="text-3xl sm:text-4xl font-bold text-hk-text-main">Qui suis-je ?</h2>
             </div>
             
-            <div class="grid md:grid-cols-[300px,1fr] gap-12 items-center">
+            <div class="grid lg:grid-cols-[300px,1fr] gap-8 sm:gap-12 items-center">
                 
-                <div class="flex flex-col items-center gap-6 hk-card p-8">
-                    <div class="relative w-48 h-48 rounded-full overflow-hidden border-4 border-hk-blue shadow-lg shadow-hk-blue/20">
+                <div class="flex flex-col items-center gap-6 hk-card p-6 sm:p-8">
+                    <div class="relative w-36 h-36 sm:w-48 sm:h-48 rounded-full overflow-hidden border-4 border-hk-blue shadow-lg shadow-hk-blue/20">
                         <img src="Profil.jpg" alt="Henock Kalambay" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-hk-cyan opacity-10 flex items-center justify-center text-5xl text-hk-cyan">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
                     </div>
                     <div class="text-center">
                         <p class="text-xl font-bold text-hk-text-main">Henock Kalambay</p>
-                        <p class="text-hk-text-muted">Développeur & Créateur</p>
+                        <p class="text-sm sm:text-base text-hk-text-muted">Développeur & Créateur de contenu digital</p>
                     </div>
                     <div class="flex items-center gap-5 text-2xl text-hk-text-muted">
                         <a href="https://www.linkedin.com/in/henock-kalambay-b57392391" target="_blank" class="hover:text-hk-cyan transition"><i class="fab fa-linkedin"></i></a>
@@ -228,24 +221,24 @@
                     </div>
                 </div>
                 
-                <div class="hk-card p-10 leading-relaxed text-lg">
+                <div class="hk-card p-6 sm:p-10 leading-relaxed text-base sm:text-lg">
                     <p class="text-hk-text-main mb-6">
                         Je suis Henock Kalambay, étudiant passionné en informatique génie logiciel, spécialisé dans la création d'applications desktop et web ainsi que dans la programmation de systèmes embarqués.
                     </p>
-                    <p class="text-hk-text-muted mb-10">
+                    <p class="text-hk-text-muted mb-8 sm:mb-10">
                         Mon approche mêle la rigueur du développement logiciel à l'innovation de l'électronique. J'aime relever des défis techniques pour créer des outils concrets et accessibles, pensés pour le quotidien et les besoins spécifiques de notre environnement, notamment en Afrique.
                     </p>
                     
-                    <div class="grid md:grid-cols-2 gap-8 pt-8 border-t border-hk-border">
+                    <div class="grid sm:grid-cols-2 gap-6 sm:gap-8 pt-8 border-t border-hk-border">
                         <div class="flex items-start gap-4">
-                            <div class="text-3xl text-hk-blue mt-1"><i class="fas fa-laptop-code"></i></div>
+                            <div class="text-3xl text-hk-blue mt-1 shrink-0"><i class="fas fa-laptop-code"></i></div>
                             <div>
                                 <p class="font-semibold text-hk-text-main mb-1">Développement & Innovation</p>
                                 <p class="text-sm text-hk-text-muted">Création d'applications desktop puissantes et de plateformes web interactives.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
-                            <div class="text-3xl text-hk-blue mt-1"><i class="fas fa-microchip"></i></div>
+                            <div class="text-3xl text-hk-blue mt-1 shrink-0"><i class="fas fa-microchip"></i></div>
                             <div>
                                 <p class="font-semibold text-hk-text-main mb-1">Électronique & Arduino</p>
                                 <p class="text-sm text-hk-text-muted">Systèmes embarqués connectés, automatisation et IoT pour des solutions intelligentes.</p>
@@ -253,101 +246,93 @@
                         </div>
                     </div>
                     
-                    <div class="mt-12 flex items-center gap-3 p-4 bg-hk-blue/10 border border-hk-blue/30 rounded-xl">
-                        <i class="fas fa-map-marked-alt text-2xl text-hk-cyan"></i>
-                        <p class="font-medium text-hk-cyan">Ma Vision : Créer des solutions utiles, robustes et adaptées pour un impact durable en Afrique.</p>
+                    <div class="mt-8 sm:mt-12 flex items-center gap-3 p-4 bg-hk-blue/10 border border-hk-blue/30 rounded-xl">
+                        <i class="fas fa-map-marked-alt text-xl sm:text-2xl text-hk-cyan shrink-0"></i>
+                        <p class="text-sm sm:text-base font-medium text-hk-cyan">Ma Vision : Créer des solutions utiles, robustes et adaptées pour un impact durable en Afrique.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <section id="skills" class="py-24 bg-hk-dark">
+    <section id="skills" class="py-16 sm:py-24 bg-hk-dark">
         <div class="container mx-auto px-6 reveal">
             
-            <div class="max-w-xl mx-auto text-center mb-16">
+            <div class="max-w-xl mx-auto text-center mb-12 sm:mb-16">
                 <p class="text-hk-cyan font-medium mb-3">MES CAPACITÉS</p>
-                <h2 class="text-4xl font-bold text-hk-text-main">Compétences Techniques</h2>
+                <h2 class="text-3xl sm:text-4xl font-bold text-hk-text-main">Compétences Techniques</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 
-                <div class="hk-card p-8">
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="text-4xl text-hk-blue"><i class="fas fa-code"></i></div>
-                        <h3 class="text-xl font-bold text-hk-text-main">Développement Web</h3>
+                <div class="hk-card p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-4 mb-6 sm:mb-8">
+                            <div class="text-3xl sm:text-4xl text-hk-blue"><i class="fas fa-code"></i></div>
+                            <h3 class="text-xl font-bold text-hk-text-main">Développement Web</h3>
+                        </div>
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">HTML / CSS</span> <span class="text-hk-text-muted">90%</span></div>
+                                <div class="skill-bar"><div class="skill-level" data-level="90%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">JavaScript</span> <span class="text-hk-text-muted">85%</span></div>
+                                <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Tailwind CSS</span> <span class="text-hk-text-muted">80%</span></div>
+                                <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Responsive Design</span> <span class="text-hk-text-muted">85%</span></div>
+                                <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">HTML / CSS</span> <span class="text-hk-text-muted">90%</span></div>
-                            <div class="skill-bar"><div class="skill-level" data-level="90%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">JavaScript</span> <span class="text-hk-text-muted">85%</span></div>
-                            <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Tailwind CSS</span> <span class="text-hk-text-muted">80%</span></div>
-                            <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Responsive Design</span> <span class="text-hk-text-muted">85%</span></div>
-                            <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
-                        </div>
-                        <div class="pt-4 flex gap-4 text-3xl text-hk-text-muted opacity-50">
-                            <i class="fab fa-html5"></i> <i class="fab fa-css3-alt"></i> <i class="fab fa-js-square"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hk-card p-8">
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="text-4xl text-hk-blue"><i class="fas fa-desktop"></i></div>
-                        <h3 class="text-xl font-bold text-hk-text-main">Développement Logiciel</h3>
-                    </div>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">VB.NET / C#</span> <span class="text-hk-text-muted">85%</span></div>
-                            <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Applications Desktop</span> <span class="text-hk-text-muted">80%</span></div>
-                            <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Gestion de Bases de Données</span> <span class="text-hk-text-muted">75%</span></div>
-                            <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
-                        </div>
-                        <div class="pt-10 flex gap-4 text-3xl text-hk-text-muted opacity-50">
-                            <i class="fas fa-code-branch"></i> <i class="fas fa-database"></i>
-                        </div>
+                    <div class="pt-6 flex gap-4 text-3xl text-hk-text-muted opacity-50">
+                        <i class="fab fa-html5"></i> <i class="fab fa-css3-alt"></i> <i class="fab fa-js-square"></i>
                     </div>
                 </div>
 
-                <div class="hk-card p-8 lg:col-span-2 lg:md:grid-cols-2">
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="text-4xl text-hk-blue"><i class="fas fa-microchip"></i></div>
-                        <h3 class="text-xl font-bold text-hk-text-main">Électronique & Arduino</h3>
-                    </div>
-                    <div class="grid md:grid-cols-2 gap-x-8 gap-y-6">
-                        <div>
-                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">C / C++ (Arduino IDE)</span> <span class="text-hk-text-muted">80%</span></div>
-                            <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+                <div class="hk-card p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-4 mb-6 sm:mb-8">
+                            <div class="text-3xl sm:text-4xl text-hk-blue"><i class="fas fa-desktop"></i></div>
+                            <h3 class="text-xl font-bold text-hk-text-main">Développement Logiciel</h3>
                         </div>
-                        <div>
-                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Systèmes Embarqués</span> <span class="text-hk-text-muted">75%</span></div>
-                            <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">VB.NET / C#</span> <span class="text-hk-text-muted">85%</span></div>
+                                <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Applications Desktop</span> <span class="text-hk-text-muted">80%</span></div>
+                                <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Bases de Données</span> <span class="text-hk-text-muted">75%</span></div>
+                                <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
+                            </div>
                         </div>
-                       
-                       
-                       
-                       <h3 class="text-xl font-bold text-hk-text-main">Électronique & Arduino</h3>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-x-8 gap-y-6">
-                        <div>
-                            <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">C / C++ (Arduino IDE)</span> <span class="text-hk-text-muted">80%</span></div>
-                            <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+                    <div class="pt-6 flex gap-4 text-3xl text-hk-text-muted opacity-50">
+                        <i class="fas fa-code-branch"></i> <i class="fas fa-database"></i>
+                    </div>
+                </div>
+
+                <div class="hk-card p-6 sm:p-8 flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                    <div>
+                        <div class="flex items-center gap-4 mb-6 sm:mb-8">
+                            <div class="text-3xl sm:text-4xl text-hk-blue"><i class="fas fa-microchip"></i></div>
+                            <h3 class="text-xl font-bold text-hk-text-main">Électronique & Arduino</h3>
+                        </div>
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">C / C++ (Arduino IDE)</span> <span class="text-hk-text-muted">80%</span></div>
+                                <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+                            </div>
+                            <div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1.5"><span class="text-hk-text-main font-medium">Systèmes Embarqués</span> <span class="text-hk-text-muted">75%</span></div>
